@@ -28,7 +28,7 @@ public class WeatherFunction extends Fragment {
             URL url = new URL(targetURL);
             connection = (HttpURLConnection)url.openConnection();
             connection.setRequestProperty("content-type", "application/json;  charset=utf-8");
-            connection.setRequestProperty("Content-Language", "en-US");
+            connection.setRequestProperty("Content-Language", "ua-UA");
             connection.setUseCaches (false);
             connection.setDoInput(true);
             connection.setDoOutput(false);

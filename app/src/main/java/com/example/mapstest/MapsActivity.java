@@ -76,6 +76,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     + "Burned cal. for this run: " + (int) (distance * 0.5 * 70 * 0.001));
             markerOptions.snippet("Destination");
 
+            CustomInfoWindowGoogleMap customInfoWindow = new CustomInfoWindowGoogleMap(this);
+            mMap.setInfoWindowAdapter(customInfoWindow);
+
             Marker locationMarker = mMap.addMarker(markerOptions);
             locationMarker.setDraggable(false);
             locationMarker.showInfoWindow();

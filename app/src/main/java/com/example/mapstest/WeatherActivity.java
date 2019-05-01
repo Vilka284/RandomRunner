@@ -2,7 +2,6 @@ package com.example.mapstest;
 
 import org.json.JSONObject;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
@@ -38,7 +37,7 @@ public class WeatherActivity extends AppCompatActivity {
         detailsField = findViewById(R.id.details_field);
         currentTemperatureField = findViewById(R.id.current_temperature_field);
         weatherIcon = findViewById(R.id.weather_icon);
-        weatherFont = Typeface.createFromAsset(WeatherActivity.this.getAssets(),"@font/weather.ttf");
+        weatherFont = Typeface.createFromAsset(WeatherActivity.this.getAssets(),"weather.ttf");
         weatherIcon.setTypeface(weatherFont);
 
         taskLoadUp(city);
