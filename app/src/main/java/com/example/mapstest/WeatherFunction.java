@@ -12,6 +12,7 @@ import java.net.URL;
 import java.util.Date;
 
 public class WeatherFunction extends Fragment {
+
     public static boolean isNetworkAvailable(Context context)
     {
         return ((ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE)).getActiveNetworkInfo() != null;

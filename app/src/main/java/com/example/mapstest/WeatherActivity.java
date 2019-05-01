@@ -2,19 +2,14 @@ package com.example.mapstest;
 
 import org.json.JSONObject;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.text.Html;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 import org.json.JSONException;
@@ -25,13 +20,11 @@ import java.util.Locale;
 
 public class WeatherActivity extends AppCompatActivity {
 
-    TextView selectCity, cityField, detailsField, currentTemperatureField, weatherIcon, updatedField;
-    ProgressBar loader;
+    TextView cityField, detailsField, currentTemperatureField, weatherIcon, updatedField;
     Typeface weatherFont;
     String city = "Lviv, UA";
 
     String OPEN_WEATHER_MAP_API = "51d84f47ee408bfbeb1865a5d248bfb9";
-
 
 
     @Override
@@ -40,45 +33,15 @@ public class WeatherActivity extends AppCompatActivity {
         getSupportActionBar().hide();
         setContentView(R.layout.weather_activity);
 
-        cityField = (TextView) findViewById(R.id.city_field);
-        updatedField = (TextView) findViewById(R.id.updated_field);
-        detailsField = (TextView) findViewById(R.id.details_field);
-        currentTemperatureField = (TextView) findViewById(R.id.current_temperature_field);
-        weatherIcon = (TextView) findViewById(R.id.weather_icon);
-        weatherFont = Typeface.createFromAsset(getAssets(), "fonts/weather.ttf");
+        cityField = findViewById(R.id.city_field);
+        updatedField = findViewById(R.id.updated_field);
+        detailsField = findViewById(R.id.details_field);
+        currentTemperatureField = findViewById(R.id.current_temperature_field);
+        weatherIcon = findViewById(R.id.weather_icon);
+        weatherFont = Typeface.createFromAsset(WeatherActivity.this.getAssets(),"@font/weather.ttf");
         weatherIcon.setTypeface(weatherFont);
 
         taskLoadUp(city);
-
-        selectCity.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder alertDialog = new AlertDialog.Builder(WeatherActivity.this);
-                alertDialog.setTitle("Change City");
-                final EditText input = new EditText(WeatherActivity.this);
-                input.setText(city);
-                LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                        LinearLayout.LayoutParams.MATCH_PARENT,
-                        LinearLayout.LayoutParams.MATCH_PARENT);
-                input.setLayoutParams(lp);
-                alertDialog.setView(input);
-
-                alertDialog.setPositiveButton("Change",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                city = input.getText().toString();
-                                taskLoadUp(city);
-                            }
-                        });
-                alertDialog.setNegativeButton("Cancel",
-                        new DialogInterface.OnClickListener() {
-                            public void onClick(DialogInterface dialog, int which) {
-                                dialog.cancel();
-                            }
-                        });
-                alertDialog.show();
-            }
-        });
 
     }
 
@@ -95,13 +58,6 @@ public class WeatherActivity extends AppCompatActivity {
 
 
     class DownloadWeather extends AsyncTask < String, Void, String > {
-
-        @Override
-        protected void onPreExecute() {
-            super.onPreExecute();
-            loader.setVisibility(View.VISIBLE);
-
-        }
 
         protected String doInBackground(String...args) {
             String xml = WeatherFunction.excuteGet("http://api.openweathermap.org/data/2.5/weather?q=" + args[0] +
@@ -126,7 +82,6 @@ public class WeatherActivity extends AppCompatActivity {
                             json.getJSONObject("sys").getLong("sunrise") * 1000,
                             json.getJSONObject("sys").getLong("sunset") * 1000)));
 
-                    loader.setVisibility(View.GONE);
 
                 }
             } catch (JSONException e) {

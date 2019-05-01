@@ -36,7 +36,6 @@ public class MainActivity extends AppCompatActivity {
     final static int PERMISSION_ALL = 1;
     final static String[] PERMISSIONS = {Manifest.permission.ACCESS_COARSE_LOCATION,Manifest.permission.ACCESS_FINE_LOCATION};
     LocationManager locationManager;
-    ConnectionDetector cd;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,17 +62,12 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        cd = new ConnectionDetector();
         weatherButton = findViewById(R.id.button2);
         weatherButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (cd.isConnected()) {
-                        Intent buttonIntent = new Intent(MainActivity.this, WeatherActivity.class);
-                        startActivity(buttonIntent);
-                    } else {
-                        Toast.makeText(MainActivity.this, "You are not connected to the network", Toast.LENGTH_SHORT).show();
-                    }
+                    Intent buttonIntent = new Intent(MainActivity.this, WeatherActivity.class);
+                    startActivity(buttonIntent);
                 }
         });
         RandomText = findViewById(R.id.Randomtext);

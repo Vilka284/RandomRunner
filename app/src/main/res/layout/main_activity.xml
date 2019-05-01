@@ -25,25 +25,24 @@
 
     <TextView
         android:id="@+id/Randomtext"
-        android:layout_width="273dp"
+        android:layout_width="320dp"
         android:layout_height="80dp"
-        android:layout_marginStart="69dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="140dp"
-        android:layout_marginEnd="69dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:background="#40BDB8B8"
         android:text="Random text"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textColor="#FF7700"
+        android:textColor="#070605"
         android:textColorHighlight="#2B2828"
-        android:textSize="30dp"
-        android:textStyle="bold"
+        android:textSize="25dp"
+        android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/imageButton1"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.46" />
 
     <Button
         android:id="@+id/button2"
